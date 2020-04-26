@@ -1,0 +1,66 @@
+# Maintainer: Mark Stenglein <mark@stengle.in>
+
+pkgname=lollypop-nodonation
+pkgver=1.2.35
+pkgrel=1
+pkgdesc='Music player for GNOME'
+arch=(any)
+url=https://gitlab.gnome.org/World/lollypop
+license=(GPL)
+depends=(
+  appstream-glib
+  gst-plugins-base-libs
+  gtk3
+  python-beautifulsoup4
+  python-cairo
+  python-gobject
+  python-pillow
+  totem-plparser
+)
+makedepends=(
+  git
+  gobject-introspection
+  intltool
+  itstool
+  meson
+)
+optdepends=(
+  'easytag: Modify tags'
+  'gst-libav: FFmpeg plugin for GStreamer'
+  'gst-plugins-bad: "Bad" plugin libraries'
+  'gst-plugins-base: "Base" plugin libraries'
+  'gst-plugins-good: "Good" plugin libraries'
+  'gst-plugins-ugly: "Ugly" plugin libraries'
+  'kid3-qt: Store covers in tags'
+  'libsecret: Last.FM support'
+  'python-pylast: Last.FM support'
+  'youtube-dl: Youtube support'
+)
+conflicts=(lollypop)
+source=("git+https://gitlab.gnome.org/World/lollypop.git#tag=279742c4ead01d4b66ee42778dca735ca0eb38ad"
+        "Remove-donation-notification.patch")
+sha256sums=("SKIP"
+            "9f1d3f27f2b20613bf51a6c3c0fbef7b5e52aa1eaf851510b08fd4a73aa17adb")
+
+pkgver() {
+  cd lollypop
+
+  git describe --tags
+}
+
+prepare() {
+  cd lollypop
+  patch --forward --strip=1 --input="${srcdir}/Remove-donation-notification.patch"
+}
+
+build() {
+  arch-meson lollypop build \
+    --libexecdir=lib/lollypop
+  ninja -C build
+}
+
+package() {
+  DESTDIR="${pkgdir}" ninja -C build install
+}
+
+# vim: ts=2 sw=2 et:

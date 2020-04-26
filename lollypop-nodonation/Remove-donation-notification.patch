@@ -1,0 +1,54 @@
+From 3de050692ba45f07fabb3f4c8335f6c852a8e770 Mon Sep 17 00:00:00 2001
+From: Mark Stenglein <mark@stengle.in>
+Date: Sun, 26 Apr 2020 16:31:32 -0400
+Subject: [PATCH 1/1] Remove donation notification.
+
+Signed-off-by: Mark Stenglein <mark@stengle.in>
+---
+ lollypop/container_notification.py | 33 +++++++++++++++---------------
+ 1 file changed, 17 insertions(+), 16 deletions(-)
+
+diff --git a/lollypop/container_notification.py b/lollypop/container_notification.py
+index f3180424..62eb5d61 100644
+--- a/lollypop/container_notification.py
++++ b/lollypop/container_notification.py
+@@ -80,19 +80,20 @@ class NotificationContainer:
+         """
+             Show a notification telling user to donate a little
+         """
+-        from lollypop.app_notification import AppNotification
+-        notification = AppNotification(
+-            _("Please consider a donation to the project"),
+-            [_("PayPal"), _("Patreon")],
+-            [lambda: Gtk.show_uri_on_window(
+-                App().window,
+-                "https://www.paypal.me/lollypopgnome",
+-                Gdk.CURRENT_TIME),
+-             lambda: Gtk.show_uri_on_window(
+-                App().window,
+-                "https://www.patreon.com/gnumdk",
+-                Gdk.CURRENT_TIME)])
+-        self.add_overlay(notification)
+-        notification.show()
+-        notification.set_reveal_child(True)
+-        self.__set_gsettings_value(self.__DONATION)
++        # from lollypop.app_notification import AppNotification
++        # notification = AppNotification(
++        #     _("Please consider a donation to the project"),
++        #     [_("PayPal"), _("Patreon")],
++        #     [lambda: Gtk.show_uri_on_window(
++        #         App().window,
++        #         "https://www.paypal.me/lollypopgnome",
++        #         Gdk.CURRENT_TIME),
++        #      lambda: Gtk.show_uri_on_window(
++        #         App().window,
++        #         "https://www.patreon.com/gnumdk",
++        #         Gdk.CURRENT_TIME)])
++        # self.add_overlay(notification)
++        # notification.show()
++        # notification.set_reveal_child(True)
++        # self.__set_gsettings_value(self.__DONATION)
++        return
+-- 
+2.26.2
+
