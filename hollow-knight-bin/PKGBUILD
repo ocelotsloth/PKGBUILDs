@@ -1,0 +1,30 @@
+# Maintainer: Mark Stenglein <aur@markstenglein.com>
+name=hollow-knight
+pkgname=$name-bin
+pkgver=1.5.68.11808
+pkgrel=1
+pkgdesc="Forge your own path in Hollow Knight! An epic action adventure through a vast ruined kingdom of insects and heroes. Explore twisting caverns, battle tainted creatures and befriend bizarre bugs, all in a classic, hand-drawn 2D style."
+arch=("x86_64")
+url="https://www.hollowknight.com"
+license=('custom:commercial')
+makedepends=()
+depends=()
+conflicts=("$name")
+source=("local://Hollow_Knight_${pkgver}_LinuxDRMFree.zip"
+        "$name.png"
+        "com.hollowknight.HollowKnight.desktop")
+sha256sums=('62d09bd7884624e2c4054403de26a379f877b71e0f71ccbc0591d7118e6fab01'
+            '8f6d1c7697da5107c327aa26e14a0e66bec01445596bd9971f87defb7faa82df'
+            'c1b3c1b79c9cd520c21964ed09cdcd7c570604bed451ee63b67eaf8405d27a4b')
+
+package() {
+    mkdir -p $pkgdir/opt/$name
+    cp -r "Hollow Knight_Data" $pkgdir/opt/$name/
+    install -Dm755 "Hollow Knight" $pkgdir/opt/$name/
+    install -Dm755 "LinuxPlayer_s.debug" $pkgdir/opt/$name/
+    install -Dm644 "UnityPlayer_s.debug" $pkgdir/opt/$name/
+    install -Dm644 "UnityPlayer.so" $pkgdir/opt/$name/
+    install -Dm644 $name.png $pkgdir/usr/share/pixmaps/$name.png
+    install -Dm644 com.hollowknight.HollowKnight.desktop $pkgdir/usr/share/applications/com.hollowknight.HollowKnight.desktop
+}
+

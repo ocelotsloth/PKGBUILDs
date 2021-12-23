@@ -1,0 +1,16 @@
+pkgbase = hollow-knight-bin
+	pkgdesc = Forge your own path in Hollow Knight! An epic action adventure through a vast ruined kingdom of insects and heroes. Explore twisting caverns, battle tainted creatures and befriend bizarre bugs, all in a classic, hand-drawn 2D style.
+	pkgver = 1.5.68.11808
+	pkgrel = 1
+	url = https://www.hollowknight.com
+	arch = x86_64
+	license = custom:commercial
+	conflicts = hollow-knight
+	source = local://Hollow_Knight_1.5.68.11808_LinuxDRMFree.zip
+	source = hollow-knight.png
+	source = com.hollowknight.HollowKnight.desktop
+	sha256sums = 62d09bd7884624e2c4054403de26a379f877b71e0f71ccbc0591d7118e6fab01
+	sha256sums = 8f6d1c7697da5107c327aa26e14a0e66bec01445596bd9971f87defb7faa82df
+	sha256sums = c1b3c1b79c9cd520c21964ed09cdcd7c570604bed451ee63b67eaf8405d27a4b
+
+pkgname = hollow-knight-bin
