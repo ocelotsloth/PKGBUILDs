@@ -1,0 +1,17 @@
+pkgbase = hollow-knight-modding-api
+	pkgdesc = Hollow Knight Modding API
+	pkgver = 1.5.78.11833.67
+	pkgrel = 1
+	url = https://github.com/hk-modding/api
+	arch = x86_64
+	license = MIT
+	makedepends = mono
+	makedepends = dotnet-sdk
+	makedepends = dotnet-runtime
+	makedepends = hollow-knight-bin
+	source = hollow-knight-modding-api-1.5.78.11833-67.tar.gz::https://github.com/hk-modding/api/archive/refs/tags/1.5.78.11833-67.tar.gz
+	source = com.hollowknight.HollowKnightModded.desktop
+	sha256sums = eeef7f0690055ec8a1496f59fecedac1569ee1b97fd08c0b0f05d3fe8eca63b2
+	sha256sums = a16c9eb92e81d4856f50f975052ac1f6f0c5785a281c4bc475ec70d542e49fbc
+
+pkgname = hollow-knight-modding-api

@@ -1,0 +1,34 @@
+# Maintainer: Mark Stenglein <aur@markstenglein.com>
+pkgname=hollow-knight-modding-api
+ver=1.5.78.11833-67
+pkgver=$(sed 's/-/./' <<< $ver)
+pkgrel=1
+pkgdesc="Hollow Knight Modding API"
+arch=("x86_64")
+url="https://github.com/hk-modding/api"
+license=('MIT')
+makedepends=("mono" "dotnet-sdk" "dotnet-runtime" "hollow-knight-bin")
+depends=()
+source=("$pkgname-$ver.tar.gz::https://github.com/hk-modding/api/archive/refs/tags/$ver.tar.gz"
+        "com.hollowknight.HollowKnightModded.desktop")
+sha256sums=('eeef7f0690055ec8a1496f59fecedac1569ee1b97fd08c0b0f05d3fe8eca63b2'
+            'a16c9eb92e81d4856f50f975052ac1f6f0c5785a281c4bc475ec70d542e49fbc')
+
+build() {
+    cd api-$ver
+    cp -r /opt/hollow-knight/Hollow\ Knight_Data/Managed Vanilla
+    dotnet restore
+    dotnet build PrePatcher -o PrePatcher/Output -p:Configuration=Release
+    dotnet build Assembly-CSharp -p:SolutionDir=$PWD -p:Configuration=Release
+}
+
+package() {
+    install -Dm644 com.hollowknight.HollowKnightModded.desktop $pkgdir/usr/share/applications/com.hollowknight.HollowKnightModded.desktop
+    cd api-$ver
+    mkdir -p $pkgdir/opt/hollow-knight-modded
+    cp -as /opt/hollow-knight/* $pkgdir/opt/hollow-knight-modded/
+    rm $pkgdir/opt/hollow-knight-modded/Hollow\ Knight_Data/Managed/{Assembly-CSharp.dll,mscorlib.dll}
+    cp OutputFinal/* $pkgdir/opt/hollow-knight-modded/Hollow\ Knight_Data/Managed/
+    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
+
