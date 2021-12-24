@@ -14,8 +14,8 @@ source=("local://Hollow_Knight_${pkgver}_LinuxDRMFree.zip"
         "$name.png"
         "com.hollowknight.HollowKnight.desktop")
 sha256sums=('62d09bd7884624e2c4054403de26a379f877b71e0f71ccbc0591d7118e6fab01'
-            '8f6d1c7697da5107c327aa26e14a0e66bec01445596bd9971f87defb7faa82df'
-            'c1b3c1b79c9cd520c21964ed09cdcd7c570604bed451ee63b67eaf8405d27a4b')
+            'c354f58d02eea1a7962a336a51c81aecf21fe1c6a2399379a7a4d91f3d608557'
+            'a21e4cded395bb0e45e8cdcf76c4babb994c08c69a22e577a3816651b358ad07')
 
 package() {
     mkdir -p $pkgdir/opt/$name

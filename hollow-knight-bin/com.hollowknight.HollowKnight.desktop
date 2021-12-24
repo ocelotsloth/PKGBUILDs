@@ -5,6 +5,6 @@ Name=Hollow Knight
 Comment=Forge your own path in Hollow Knight! An epic action adventure through a vast ruined kingdom of insects and heroes. Explore twisting caverns, battle tainted creatures and befriend bizarre bugs, all in a classic, hand-drawn 2D style.
 Path=/opt/hollow-knight
 Exec="/opt/hollow-knight/Hollow Knight"
-Icon=getting-over-it-with-bennett-foddy
+Icon=hollow-knight
 Terminal=false
 Categories=Game;
