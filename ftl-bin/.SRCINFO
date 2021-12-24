@@ -1,0 +1,17 @@
+pkgbase = ftl-bin
+	pkgdesc = FTL: Faster Than Light, a spaceship simulation real-time roguelike-like (requires full copy of the game)
+	pkgver = 1.6.12
+	pkgrel = 1
+	url = http://www.ftlgame.com/
+	arch = i686
+	arch = x86_64
+	license = custom:commercial
+	makedepends = imagemagick
+	depends = gcc-libs
+	depends = glu
+	source = local://FTL.1.6.12.0.Linux.zip
+	source = com.ftlgame.FTL.desktop
+	sha256sums = 5a70a0a568026ecc2086d90ff02e66b6c5c3e33700f791db5a97670201cc7ac9
+	sha256sums = 6959b1a3811b3f177c040c2e2c94dc81edb112e79d576d12bea359e3f1fc6a90
+
+pkgname = ftl-bin

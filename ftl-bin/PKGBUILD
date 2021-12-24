@@ -1,0 +1,47 @@
+# Maintainer: Mark Stenglein <aur@markstenglein.com>
+# Contributor: Tharre <tharre3@gmail.com>
+# Contributor: Dennis Hamester <dennis [dot] hamester [at] gmail [dot] com>
+# Contributor: J0k3r <moebius282 e4at gmail D0_T com>
+
+name=ftl
+pkgname=$name-bin
+pkgver=1.6.12
+pkgrel=1
+pkgdesc="FTL: Faster Than Light, a spaceship simulation real-time roguelike-like (requires full copy of the game)"
+license=('custom:commercial')
+arch=('i686' 'x86_64')
+url="http://www.ftlgame.com/"
+depends=('gcc-libs' 'glu')
+makedepends=('imagemagick')
+_gamepkg="FTL.${pkgver}.0.Linux.zip"
+
+source=("local://${_gamepkg}"
+        "com.ftlgame.FTL.desktop")
+sha256sums=('5a70a0a568026ecc2086d90ff02e66b6c5c3e33700f791db5a97670201cc7ac9'
+            '6959b1a3811b3f177c040c2e2c94dc81edb112e79d576d12bea359e3f1fc6a90')
+
+package() {
+  install -dm755 "${pkgdir}/opt/${name}"
+  cp -r "${srcdir}/FTL.$pkgver.Linux/"* "${pkgdir}/opt/${name}/"
+
+  # fix file permissions
+  find "${pkgdir}/opt/${name}" -type d -exec chmod 755 {} +
+  find "${pkgdir}/opt/${name}" -type f -exec chmod 644 {} +
+  chmod 755 "${pkgdir}/opt/${name}/FTL"
+  chmod 755 "${pkgdir}/opt/${name}/data/FTL"
+
+  if [ "${CARCH}" = "i686" ]; then
+    rm -r "${pkgdir}/opt/${name}/data/FTL.amd64"
+    find "${pkgdir}/opt/${name}/data/FTL.x86" -type f -exec chmod 755 {} +
+  else
+    rm -r "${pkgdir}/opt/${name}/data/FTL.x86"
+    find "${pkgdir}/opt/${name}/data/FTL.amd64" -type f -exec chmod 755 {} +
+  fi
+
+  install -Dm644 "${srcdir}/com.ftlgame.FTL.desktop" "${pkgdir}/usr/share/applications/com.ftlgame.FTL.desktop"
+  install -dm755 "${pkgdir}/usr/share/pixmaps"
+  convert "${pkgdir}/opt/${name}/data/exe_icon.bmp" "${pkgdir}/usr/share/pixmaps/${name}.png"
+  install -dm755 "${pkgdir}/usr/share/licenses"
+  ln -s "/opt/${name}/data/licenses/" "${pkgdir}/usr/share/licenses/${pkgname}"
+}
+
