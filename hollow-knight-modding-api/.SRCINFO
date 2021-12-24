@@ -9,6 +9,7 @@ pkgbase = hollow-knight-modding-api
 	makedepends = dotnet-sdk
 	makedepends = dotnet-runtime
 	makedepends = hollow-knight-bin
+	depends = hollow-knight-bin
 	source = hollow-knight-modding-api-1.5.78.11833-67.tar.gz::https://github.com/hk-modding/api/archive/refs/tags/1.5.78.11833-67.tar.gz
 	source = com.hollowknight.HollowKnightModded.desktop
 	sha256sums = eeef7f0690055ec8a1496f59fecedac1569ee1b97fd08c0b0f05d3fe8eca63b2

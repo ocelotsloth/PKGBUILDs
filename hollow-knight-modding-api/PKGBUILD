@@ -8,7 +8,7 @@ arch=("x86_64")
 url="https://github.com/hk-modding/api"
 license=('MIT')
 makedepends=("mono" "dotnet-sdk" "dotnet-runtime" "hollow-knight-bin")
-depends=()
+depends=("hollow-knight-bin")
 source=("$pkgname-$ver.tar.gz::https://github.com/hk-modding/api/archive/refs/tags/$ver.tar.gz"
         "com.hollowknight.HollowKnightModded.desktop")
 sha256sums=('eeef7f0690055ec8a1496f59fecedac1569ee1b97fd08c0b0f05d3fe8eca63b2'
