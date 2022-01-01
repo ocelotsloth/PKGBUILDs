@@ -1,0 +1,55 @@
+# Maintainer: Mark Stenglein <aur@markstenglein.com>
+# Contributor: Rafael Silva <perigoso@riseup.net>
+# Contributor: Dan Beste <drb@wishalloy.io>
+
+name=stardew-valley
+pkgname="$name-bin"
+pkgver=1.5.6
+pkgrel=1
+pkgdesc="You’ve inherited your grandfather’s old farm plot in Stardew Valley.
+Armed with hand-me-down tools and a few coins, you set out to begin your new
+life."
+url='http://stardewvalley.net/'
+license=('custom')
+arch=('x86_64')
+archivename=stardew_valley_1_5_6_1926321868_52535.sh
+source=(
+  "local://$archivename"
+  "net.stardewvalley.StardewValley.desktop"
+  'gogextract.py'
+)
+noextract=("$archivename")
+sha256sums=('45ca7ea53e4babff072b70def87095aadee5922dd07d51d7355b68af8a63b45c'
+            '197571f22b6e561034b3fff1fdc61d234800595a841bd40e40a72e30c416c931'
+            '23c735534753eb06ad1d7bb75dbfd1229c74e53995535af65ade1d731684a78f')
+makedepends=('python'
+             'unzip')
+options=('staticlibs')
+
+prepare() {
+  ./gogextract.py $archivename .
+  echo 'Extracting data.zip'
+  unzip -q -o data -d data
+}
+
+package() {
+  install -d "${pkgdir}/opt/${name}/"
+  install -d "${pkgdir}/usr/share/applications/"
+  install -d "${pkgdir}/usr/share/licenses/${pkgname}/"
+  install -d "${pkgdir}/usr/share/pixmaps/"
+
+  cp -r data/data/noarch/* "${pkgdir}/opt/${name}/"
+
+  install -m 644                                      \
+    'data/data/noarch/docs/End User License Agreement.txt' \
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  install -m 644                   \
+    "data/data/noarch/support/icon.png" \
+    "${pkgdir}/usr/share/pixmaps/${name}.png"
+  install -m 644                   \
+    "${srcdir}/net.stardewvalley.StardewValley.desktop" \
+    "${pkgdir}/usr/share/applications/net.stardewvalley.StardewValley.desktop"
+}
+
+# vim: ts=2 sw=2 et:
+
