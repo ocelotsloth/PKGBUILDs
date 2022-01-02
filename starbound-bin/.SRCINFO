@@ -1,0 +1,20 @@
+pkgbase = starbound-bin
+	pkgdesc = You’ve fled your home, only to find yourself lost in space with a damaged ship. Your only option is to beam down to the planet below, repair your ship and set off to explore the universe...
+	pkgver = 1.4.4
+	pkgrel = 1
+	url = https://playstarbound.com/
+	arch = x86_64
+	license = custom:commercial
+	depends = gtk2
+	conflicts = starbound
+	options = staticlibs
+	source = local://starbound_1.4.4_linux.zip
+	source = starbound.png
+	source = com.playstarbound.Starbound.desktop
+	source = starbound
+	sha256sums = 9a571b799aa2d8be7f1d6c7fb20b3c8fe36e6cc58cab4e831cca64ae843144f4
+	sha256sums = 58003734304860908f7f051380bdf440da3df5a5678ad3fae308c0d2c25c3003
+	sha256sums = 357a53d03d615b82e3c3ff67f4bbbbf459cf44d2bda2ec02269b5741f3572447
+	sha256sums = 5ae1520082c8f80a94aaebd3c50835177c4b89a86a71014309015872bed922e8
+
+pkgname = starbound-bin

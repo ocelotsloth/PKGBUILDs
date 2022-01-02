@@ -1,0 +1,26 @@
+#!/bin/bash
+
+install_path=/opt/starbound
+config_path=$HOME/.config/starbound
+save_path=$HOME/.local/share/starbound
+
+mkdir -p $config_path
+mkdir -p $save_path
+
+if [ ! -f $config_path/sbinit.config ]
+then
+    cat > $config_path/sbinit.config <<EOF
+{
+  "assetDirectories" : [
+    "$install_path/assets/",
+    "$install_path/mods/"
+  ],
+
+  "storageDirectory" : "$save_path"
+}
+EOF
+fi
+
+cd $config_path
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$install_path/linux /opt/starbound/linux/starbound -bootconfig $config_path/sbinit.config
+
