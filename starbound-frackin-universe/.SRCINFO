@@ -1,0 +1,17 @@
+pkgbase = starbound-frackin-universe
+	pkgdesc = Frackin Universe Mod for Starbound
+	pkgver = 6.1.44
+	pkgrel = 1
+	url = https://github.com/sayterdarkwynd/FrackinUniverse
+	arch = x86_64
+	license = custom:CCPL:cc-by-4.0
+	makedepends = starbound-bin
+	depends = starbound-bin
+	source = starbound-frackin-universe-6.1.44.tar.gz::https://github.com/sayterdarkwynd/FrackinUniverse/archive/refs/tags/6.1.44.tar.gz
+	source = org.miraheze.frackinuniverse.StarboundFrackinUniverse.desktop
+	source = starbound
+	sha256sums = 5e08d77339696f8a9258f47e25f2a961435485f4c97f34861cd9228a177075af
+	sha256sums = 352eeebb0706f52712cde8d7258f097f20c3205c8aa36513c0faa039ad0f901c
+	sha256sums = 4c91078b5eecc5c2e93d211b90e794328b9a6b0b5dbfa78f8c9c74a1cf7d68a9
+
+pkgname = starbound-frackin-universe

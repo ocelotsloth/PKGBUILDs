@@ -1,0 +1,32 @@
+# Maintainer: Mark Stenglein <aur@markstenglein.com>
+pkgname=starbound-frackin-universe
+pkgver=6.1.44
+pkgrel=1
+pkgdesc="Frackin Universe Mod for Starbound"
+arch=("x86_64")
+url="https://github.com/sayterdarkwynd/FrackinUniverse"
+license=('custom:CCPL:cc-by-4.0')
+makedepends=("starbound-bin")
+depends=("starbound-bin")
+source=("$pkgname-$pkgver.tar.gz::https://github.com/sayterdarkwynd/FrackinUniverse/archive/refs/tags/$pkgver.tar.gz"
+        "org.miraheze.frackinuniverse.StarboundFrackinUniverse.desktop"
+        "starbound")
+sha256sums=('5e08d77339696f8a9258f47e25f2a961435485f4c97f34861cd9228a177075af'
+            '352eeebb0706f52712cde8d7258f097f20c3205c8aa36513c0faa039ad0f901c'
+            '4c91078b5eecc5c2e93d211b90e794328b9a6b0b5dbfa78f8c9c74a1cf7d68a9')
+
+build() {
+    /opt/starbound/linux/asset_packer FrackinUniverse-$pkgver FrackinUniverse.pak
+}
+
+package() {
+    install -Dm644 org.miraheze.frackinuniverse.StarboundFrackinUniverse.desktop $pkgdir/usr/share/applications/org.miraheze.frackinuniverse.StarboundFrackinUniverse.desktop
+    install -Dm644 FrackinUniverse-$pkgver/LICENSE.txt "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+
+    mkdir -p $pkgdir/opt/$pkgname
+    cp -as /opt/starbound/* $pkgdir/opt/$pkgname/
+    rm -rf /opt/$pkgname/starbound
+    install -Dm755 starbound $pkgdir/opt/$pkgname/starbound
+    install -Dm644 FrackinUniverse.pak $pkgdir/opt/$pkgname/mods/FrackinUniverse.pak
+}
+

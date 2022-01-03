@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=6.1.44
+Name=Starbound Frackin Universe
+Comment=You’ve fled your home, only to find yourself lost in space with a damaged ship. Your only option is to beam down to the planet below, repair your ship and set off to explore the universe...
+Path=/opt/starbound-frackin-universe
+Exec=/opt/starbound-frackin-universe/starbound
+Icon=starbound
+Terminal=false
+Categories=Game;
