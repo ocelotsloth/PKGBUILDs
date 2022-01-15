@@ -1,0 +1,29 @@
+# Maintainer: Mark Stenglein <aur@markstenglein.com>
+name=celeste
+pkgname=$name-bin
+pkgver=1.4.0.0
+pkgrel=1
+pkgdesc="Help Madeline survive her inner demons on her journey to the top of
+Celeste Mountain, in this super-tight, hand-crafted platformer from the 
+creators of multiplayer classic TowerFall."
+arch=("x86_64")
+url="http://www.celestegame.com/"
+license=('custom:commercial')
+makedepends=()
+depends=('gtk2')
+conflicts=("$name")
+zipname=${name}-linux
+desktopfile=com.celestegame.Celeste.desktop
+source=("local://$zipname.zip"
+        "$desktopfile")
+sha256sums=('ab8827892820d345378f94d9a6f2199d29aa03208777fa4e540b90deb0d8100b'
+            '9899fc61fcbfe7de8635b83893c4813ff0ad05727c4c47724461a03816e3d154')
+options=('staticlibs')
+
+package() {
+    install -d $pkgdir/opt/$name
+    cp -r * $pkgdir/opt/$name
+    rm -rf $pkgdir/opt/$name/$desktopfile
+    install -Dm644 Celeste.png $pkgdir/usr/share/pixmaps/$name.png
+    install -Dm644 $desktopfile $pkgdir/usr/share/applications/$desktopfile
+}
