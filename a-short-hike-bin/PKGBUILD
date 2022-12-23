@@ -1,0 +1,31 @@
+# Maintainer: Mark Stenglein <aur@markstenglein.com>
+name=a-short-hike
+pkgname=$name-bin
+pkgver=1.10.1
+pkgrel=1
+pkgdesc=" Hike, climb, and soar through the peaceful mountainside landscapes of
+Hawk Peak Provincial Park."
+arch=("x86_64")
+url="https://ashorthike.com/"
+license=('custom:commercial')
+makedepends=()
+depends=('libxml2')
+conflicts=("$name")
+zipname=${name}-linux-latest
+desktopfile=io.itch.adamgryu.a-short-hike.desktop
+source=("local://$zipname.zip"
+        "$desktopfile")
+sha256sums=('9aec017bef1026d238549bc5214aae86c00bb88f7320d0b82231858562ab3414'
+            '84086d420dfe507facf677035b130e480e5d6bf3980a5188ef1522b4a60b768a')
+options=('staticlibs')
+
+package() {
+    install -d $pkgdir/opt/$name
+    cp -r $srcdir/AShortHike_Data $pkgdir/opt/$name
+    install -Dm755 $srcdir/AShortHike.x86_64 $pkgdir/opt/$name/AShortHike.x86_64
+    install -Dm755 $srcdir/LinuxPlayer_s.debug $pkgdir/opt/$name/LinuxPlayer_s.debug
+    install -Dm755 $srcdir/UnityPlayer_s.debug $pkgdir/opt/$name/UnityPlayer_s.debug
+    install -Dm755 $srcdir/UnityPlayer.so $pkgdir/opt/$name/UnityPlayer.so
+    install -Dm644 $srcdir/AShortHike_Data/Resources/UnityPlayer.png $pkgdir/usr/share/pixmaps/$name.png
+    install -Dm644 $desktopfile $pkgdir/usr/share/applications/$desktopfile
+}

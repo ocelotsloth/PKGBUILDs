@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.1
+Name=A Short Hike
+Comment=a little exploration game about hiking up a mountain
+Path=/opt/a-short-hike
+Exec=/opt/a-short-hike/AShortHike.x86_64
+Icon=a-short-hike
+Terminal=false
+Categories=Game;
